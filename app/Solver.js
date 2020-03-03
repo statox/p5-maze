@@ -50,4 +50,10 @@ function Solver () {
         this.isWorkDone = this.solved;
         return this.isWorkDone;
     }
+
+    this.solveFull = () => {
+        while (!this.isWorkDone) {
+            this.iteration();
+        }
+    };
 }

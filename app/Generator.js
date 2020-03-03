@@ -41,10 +41,9 @@ function Generator() {
         }
     };
 
-    this.generateAll = () => {
-        let generationEnded = false;
-        while (!generationEnded) { 
-            generationEnded = generator.iteration();
+    this.generateFull = () => {
+        while (!this.isWorkDone) {
+            this.iteration();
         }
         this.cleanGrid();
     };

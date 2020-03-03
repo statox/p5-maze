@@ -54,9 +54,7 @@ function draw() {
         if (showGeneration) {
             generator.iteration();
         } else {
-            while (!generator.isWorkDone) {
-                generator.iteration();
-            }
+            generator.generateFull();
         }
     }
     // Solve the maze step by step
@@ -64,9 +62,7 @@ function draw() {
         if (showSolving) {
             solver.iteration();
         } else {
-            while (!solver.isWorkDone) {
-                solver.iteration();
-            }
+            solver.solveFull();
         }
     }
     // When the solving is done create a pause to show the result
