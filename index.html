@@ -3,16 +3,97 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A pool game with p5.js</title>
+    <title>Fun with mazes</title>
     <style> body {padding: 0; margin: 0;} </style>
+
+    <!-- jQuery required by bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <!-- p5.js -->
     <script src="p5/p5.min.js"></script>
     <script src="p5/addons/p5.dom.min.js"></script>
     <script src="p5/addons/p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
-    <script src="Cell.js"></script>
-    <script src="Generator.js"></script>
-    <script src="Solver.js"></script>
+
+    <!-- App -->
+    <script src="app/sketch.js"></script>
+    <script src="app/Cell.js"></script>
+    <script src="app/Generator.js"></script>
+    <script src="app/Solver.js"></script>
+    <script src="app/Interface.js"></script>
   </head>
   <body>
+      <div class="container">
+          <!-- Jumbotron header -->
+          <div class="jumbotron" style="text-align:center">
+              <h1>Fun with mazes</h1>
+              <p>Generate and find your way through mazes</p>
+          </div>
+
+          <!-- Settings -->
+          <div class="row">
+              <h1 id="settings">Settings</h1>
+              <hr/>
+              <table class="table table-bordered collapse in" id="settings-content">
+                  <tbody>
+                      <tr class="row">
+                          <td class="col-sm-2">
+                              <p>Size of the maze</p>
+                          </td>
+                          <td class="col-sm-7">
+                              <span>Change the size of the maze</span>
+                              <span><i class="reset-simulation-warning"><br/>*Modifying this setting resets the simulation</i></span>
+                          </td>
+                          <td class="col-sm-3">
+                              <input id="inputSize" type="number"/>
+                              <button class="btn btn-default" type="button" onclick="setSize()">Reset</button>
+                          </td>
+                      </tr>
+                      <tr class="row">
+                          <td class="col-sm-2">
+                              <p>Show generation</p>
+                          </td>
+                          <td class="col-sm-7">
+                              <span>Show the generation of the maze step by step</span>
+                          </td>
+                          <td class="col-sm-3">
+                              <input id="inputShowGeneration" type="checkbox" onclick='setShowGeneration(this);'/>
+                          </td>
+                      </tr>
+                      <tr class="row">
+                          <td class="col-sm-2">
+                              <p>Show solving</p>
+                          </td>
+                          <td class="col-sm-7">
+                              <span>Show the solving of the maze step by step</span>
+                          </td>
+                          <td class="col-sm-3">
+                              <input id="inputShowSolving" type="checkbox" onclick='setShowSolving(this);'/>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          <!-- The simulation -->
+          <div class="row">
+              <h1 id="simulation">Maze</h1>
+              <hr/>
+              <div id="maze-content" class="collapse in">
+                  <div class="col-md-6" id="canvasDiv"></div>
+              </div>
+          </div>
+      </div>
+
+
   </body>
 </html>

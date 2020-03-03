@@ -12,9 +12,9 @@ const newGrid = () => {
     grid[COL-1][COL-1].makeFinish();
 };
 
-const W=1500;
-const COL=50;
-const TOTAL_CELLS = COL*COL;
+const W=900;
+let COL=10;
+let TOTAL_CELLS = COL*COL;
 const grid = [];
 const stack = [];
 let generationDone;
@@ -22,12 +22,13 @@ let solvingDone;
 let pause;
 let generator;
 let nextTick;
-let showGeneration;
-let showSolving;
+let showGeneration = true;
+let showSolving = true;
 
-function setup() {
-    createCanvas(W, W);
+function resetMaze() {
+    pause = false;
 
+    TOTAL_CELLS = COL*COL;
     newGrid();
     generator = new Generator();
     solver = new Solver();
@@ -35,8 +36,15 @@ function setup() {
     generationDone = false;
     solvingDone = false;
     pause = false;
-    showGeneration = false;
-    showSolving = true;
+}
+
+function setup() {
+    // Create the canvas and put it in its div
+    var myCanvas = createCanvas(W, W);
+    myCanvas.parent("canvasDiv");
+
+    initializeInterface();
+    resetMaze();
 }
 
 function draw() {
