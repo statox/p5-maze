@@ -12,8 +12,8 @@ const newGrid = () => {
     grid[COL-1][COL-1].makeFinish();
 };
 
-const W=650;
-const COL=30;
+const W=1500;
+const COL=50;
 const TOTAL_CELLS = COL*COL;
 const grid = [];
 const stack = [];
@@ -22,9 +22,11 @@ let solvingDone;
 let pause;
 let generator;
 let nextTick;
+let showGeneration;
+let showSolving;
 
 function setup() {
-    createCanvas(W*1.5, W*1.5);
+    createCanvas(W, W);
 
     newGrid();
     generator = new Generator();
@@ -33,31 +35,48 @@ function setup() {
     generationDone = false;
     solvingDone = false;
     pause = false;
-
-    // Generate a grid before showing stuff
-    // generator.generateAll();
+    showGeneration = false;
+    showSolving = true;
 }
 
 function draw() {
-    // frameRate(2);
     background(0);
 
+    // Show the grid
     grid.flat().forEach(cell => cell.show());
 
+    // Generate the maze either step by step to show the generation
+    // or all at one to show only the solving
     if (!generationDone && !pause) {
-        generationDone = generator.iteration();
+        if (showGeneration) {
+            generationDone = generator.iteration();
+        } else {
+            while (!generationDone) {
+                generationDone = generator.iteration();
+            }
+        }
     }
+    // Solve the maze step by step
     if (generationDone && !solvingDone && !pause) {
-        solvingDone = solver.iteration();
+        if (showSolving) {
+            solvingDone = solver.iteration();
+        } else {
+            while (!solvingDone) {
+                solvingDone = solver.iteration();
+            }
+        }
     }
+    // When the solving is done create a pause to show the result
+    // for a few frames
     if (generationDone && solvingDone && !pause) {
         pause = true;
         nextTick = frameCount + 120;
+        solver.iteration();
     }
-    console.log({pause, frameCount, nextTick});
+    // When we paused long enough reset the maze and the solver
     if (pause && frameCount > nextTick) {
         pause = false;
-        // Create a new maze
+
         newGrid();
         generator = new Generator();
         solver = new Solver();
@@ -65,5 +84,4 @@ function draw() {
         generationDone = false;
         solvingDone = false;
     }
-
 }

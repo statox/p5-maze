@@ -7,6 +7,8 @@ function Cell(i, j) {
     this.isFinish = false;
     this.isInPath = false;
     this.walls = [true, true, true, true];
+    this.tmpColors = [];
+    this.permanentColors = [];
 
     this.makeStart = () => {
         this.isStart=true;
@@ -25,6 +27,22 @@ function Cell(i, j) {
         // mark the cells in path
         if (this.isInPath) {
             fill(150, 150, 50);
+            noStroke();
+            rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
+        }
+
+        // mark the temporary colors
+        while (this.tmpColors.length) {
+            const [R, G, B] = this.tmpColors.pop();
+            fill(R, G, B);
+            noStroke();
+            rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
+        }
+
+        // mark the permanent colors
+        for (let i=0; i<this.permanentColors.length; i++) {
+            const [R, G, B] = this.permanentColors[i];
+            fill(R, G, B, 90);
             noStroke();
             rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
         }
