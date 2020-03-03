@@ -16,8 +16,6 @@ const W=900;
 let COL=10;
 let TOTAL_CELLS = COL*COL;
 const grid = [];
-const stack = [];
-let generationDone;
 let solvingDone;
 let pause;
 let generator;
@@ -33,7 +31,6 @@ function resetMaze() {
     generator = new Generator();
     solver = new Solver();
 
-    generationDone = false;
     solvingDone = false;
     pause = false;
 }
@@ -55,17 +52,17 @@ function draw() {
 
     // Generate the maze either step by step to show the generation
     // or all at one to show only the solving
-    if (!generationDone && !pause) {
+    if (!generator.isWorkDone && !pause) {
         if (showGeneration) {
-            generationDone = generator.iteration();
+            generator.iteration();
         } else {
-            while (!generationDone) {
-                generationDone = generator.iteration();
+            while (!generator.isWorkDone) {
+                generator.iteration();
             }
         }
     }
     // Solve the maze step by step
-    if (generationDone && !solvingDone && !pause) {
+    if (generator.isWorkDone && !solvingDone && !pause) {
         if (showSolving) {
             solvingDone = solver.iteration();
         } else {
@@ -76,7 +73,7 @@ function draw() {
     }
     // When the solving is done create a pause to show the result
     // for a few frames
-    if (generationDone && solvingDone && !pause) {
+    if (generator.isWorkDone && solvingDone && !pause) {
         pause = true;
         nextTick = frameCount + 120;
         solver.iteration();
@@ -89,7 +86,6 @@ function draw() {
         generator = new Generator();
         solver = new Solver();
 
-        generationDone = false;
         solvingDone = false;
     }
 }

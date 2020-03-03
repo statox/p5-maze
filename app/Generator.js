@@ -1,5 +1,7 @@
 function Generator() {
     this.current = grid[0][0];
+    this.stack = [];
+    this.isWorkDone = false;
     grid[0][0].visited = true;
     grid[0][0].isCurrent = true;
 
@@ -13,19 +15,20 @@ function Generator() {
                 const index = Math.floor(Math.random() * neighbors.length);
                 const neighbor = neighbors[index]
 
-                stack.push(this.current);
+                this.stack.push(this.current);
                 this.removeWalls(this.current, neighbor);
 
                 this.current = neighbor;
                 this.current.visited = true;
                 this.visited++;
-            } else if (stack.length) {
-                this.current = stack.pop();
+            } else if (this.stack.length) {
+                this.current = this.stack.pop();
             }
             this.current.isCurrent = true;
             return false;
         }
 
+        this.isWorkDone = true;
         this.cleanGrid();
         return true;
     };
