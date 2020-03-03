@@ -24,6 +24,9 @@ function Generator() {
             } else if (this.stack.length) {
                 this.current = this.stack.pop();
             }
+
+            // Add a color to mark the current cell
+            this.current.currentColor = [100, 0, 200]
             this.current.isCurrent = true;
             return false;
         }

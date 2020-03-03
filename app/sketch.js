@@ -26,6 +26,7 @@ let solvers;
 let nextTick;
 let showGeneration = true;
 let showSolving = true;
+let customFrameRate = 60;
 
 let enabledSolvers = {
     'BFS': true,
@@ -61,6 +62,9 @@ function setup() {
 
 function draw() {
     background(0);
+
+    // Change the animation speed
+    frameRate(customFrameRate);
 
     // Show the grid
     showGrid();

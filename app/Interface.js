@@ -5,6 +5,7 @@ function initializeInterface() {
     document.getElementById("inputShowSolving").checked = showSolving;
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
+    document.getElementById("inputFrameRate").value = customFrameRate;
 }
 
 function setSize() {
@@ -24,4 +25,9 @@ function setShowSolving(button) {
 function setSolverEnabling(solverName, button) {
     enabledSolvers[solverName] = button.checked;
     resetMaze();
+}
+
+function setAnimationFrameRate () {
+    let newValue = document.getElementById("inputFrameRate").value;
+    customFrameRate = Math.max(newValue, 1);
 }

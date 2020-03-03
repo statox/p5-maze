@@ -5,16 +5,18 @@ function Cell(i, j) {
     this.isCurrent = false;
     this.isStart = false;
     this.isFinish = false;
-    this.isInPath = false;
     this.walls = [true, true, true, true];
     this.tmpColors = [];
     this.permanentColors = [];
+    this.currentColor;
 
+    // Initialisations to do to mark the cell as the start of the maze
     this.makeStart = () => {
         this.isStart=true;
         this.walls[3] = false;
     };
 
+    // Initialisations to do to mark the cell as the finish of the maze
     this.makeFinish = () => {
         this.isFinish=true;
         this.walls[1] = false;
@@ -24,13 +26,6 @@ function Cell(i, j) {
     this.getRep = () => [this.i, this.j].join(',')
 
     this.show = () => {
-        // mark the cells in path
-        if (this.isInPath) {
-            fill(150, 150, 50);
-            noStroke();
-            rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
-        }
-
         // mark the temporary colors
         while (this.tmpColors.length) {
             const [R, G, B] = this.tmpColors.pop();
@@ -48,10 +43,12 @@ function Cell(i, j) {
         }
 
         // mark the current one
-        if (this.isCurrent) {
-            fill(100, 0, 200);
+        if (this.currentColor) {
+            const [R, G, B] = this.currentColor;
+            fill(R, G, B);
             noStroke();
             rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
+            this.currentColor = undefined;
         }
 
         // mark the start
@@ -87,6 +84,7 @@ function Cell(i, j) {
         }
     };
 
+    // Return the list of unvisited neighbors cells
     this.hasNeighbors = () => {
         const neighbors = [];
         // top
@@ -109,7 +107,7 @@ function Cell(i, j) {
         return neighbors;
     }
 
-    // Cells with an open wall
+    // Return the list of neighbor cells with an open wall
     this.hasWays = () => {
         const neighbors = [];
         // top
