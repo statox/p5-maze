@@ -1,0 +1,17 @@
+{
+  "name": "mazebot-solver",
+  "version": "0.0.1",
+  "description": "Solve the mazes of Github's mazebot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "statox (me@statox.fr)",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.2",
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
+  }
+}
