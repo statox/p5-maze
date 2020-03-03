@@ -16,7 +16,6 @@ const W=900;
 let COL=10;
 let TOTAL_CELLS = COL*COL;
 const grid = [];
-let solvingDone;
 let pause;
 let generator;
 let nextTick;
@@ -31,7 +30,6 @@ function resetMaze() {
     generator = new Generator();
     solver = new Solver();
 
-    solvingDone = false;
     pause = false;
 }
 
@@ -62,18 +60,18 @@ function draw() {
         }
     }
     // Solve the maze step by step
-    if (generator.isWorkDone && !solvingDone && !pause) {
+    if (generator.isWorkDone && !solver.isWorkDone && !pause) {
         if (showSolving) {
-            solvingDone = solver.iteration();
+            solver.iteration();
         } else {
-            while (!solvingDone) {
-                solvingDone = solver.iteration();
+            while (!solver.isWorkDone) {
+                solver.iteration();
             }
         }
     }
     // When the solving is done create a pause to show the result
     // for a few frames
-    if (generator.isWorkDone && solvingDone && !pause) {
+    if (generator.isWorkDone && solver.isWorkDone && !pause) {
         pause = true;
         nextTick = frameCount + 120;
         solver.iteration();
@@ -85,7 +83,5 @@ function draw() {
         newGrid();
         generator = new Generator();
         solver = new Solver();
-
-        solvingDone = false;
     }
 }

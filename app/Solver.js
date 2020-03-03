@@ -10,6 +10,7 @@ function Solver () {
     this.currentPathCell;
     this.solved = false;
     this.finalPath = [];
+    this.isWorkDone = false;
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
@@ -46,6 +47,7 @@ function Solver () {
         }
 
 
-        return this.solved;
+        this.isWorkDone = this.solved;
+        return this.isWorkDone;
     }
 }
