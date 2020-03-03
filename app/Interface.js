@@ -3,6 +3,8 @@ function initializeInterface() {
     document.getElementById("inputSize").value = COL;
     document.getElementById("inputShowGeneration").checked = showGeneration;
     document.getElementById("inputShowSolving").checked = showSolving;
+    document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
+    document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
 }
 
 function setSize() {
@@ -17,4 +19,9 @@ function setShowGeneration(button) {
 
 function setShowSolving(button) {
     showSolving = button.checked;
+}
+
+function setSolverEnabling(solverName, button) {
+    enabledSolvers[solverName] = button.checked;
+    resetMaze();
 }

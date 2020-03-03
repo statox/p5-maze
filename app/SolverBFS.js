@@ -3,7 +3,7 @@ function PathCell (prev, current) {
     this.current = current;
 }
 
-function Solver () {
+function SolverBFS () {
     this.current = grid[0][0];
     this.visited = new Set();
     this.stack = [new PathCell(undefined, this.current)];
@@ -11,11 +11,18 @@ function Solver () {
     this.solved = false;
     this.finalPath = [];
     this.isWorkDone = false;
+    this.showVisited = false;
+
+    this.colors = {
+        head:    [50, 100, 150],
+        path:    [50, 100, 200],
+        visited: [50, 100, 250]
+    }
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
             this.current.isCurrent = false;
-            this.currentPathCell = this.stack.pop();
+            this.currentPathCell = this.stack.shift();
             this.current = this.currentPathCell.current;
 
             if (this.current.isFinish) {
@@ -31,7 +38,9 @@ function Solver () {
                 }
             }
 
-            this.current.permanentColors.push([250, 100, 50]);
+            if (this.showVisited) {
+                this.current.permanentColors.push(this.colors.visited);
+            }
             this.visited.add(this.current.getRep())
             this.current.isCurrent = true;
         }
@@ -40,9 +49,9 @@ function Solver () {
         while (this.currentPathCell.prev !== undefined) {
             // Keep the final path in memory
             if (this.solved) {
-                this.currentPathCell.current.permanentColors.push([200, 100, 50]);
+                this.currentPathCell.current.permanentColors.push(this.colors.path);
             }
-            this.currentPathCell.current.tmpColors.push([150, 150, 50]);
+            this.currentPathCell.current.tmpColors.push(this.colors.head);
             this.currentPathCell = this.currentPathCell.prev;
         }
 

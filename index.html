@@ -28,10 +28,16 @@
     <script src="app/sketch.js"></script>
     <script src="app/Cell.js"></script>
     <script src="app/Generator.js"></script>
-    <script src="app/Solver.js"></script>
+    <script src="app/SolverDFS.js"></script>
+    <script src="app/SolverBFS.js"></script>
     <script src="app/Interface.js"></script>
+
+    <!-- Github fork me ribbon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
   </head>
   <body>
+      <a class="github-fork-ribbon" href="https://github.com/statox/p5-maze" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+
       <div class="container">
           <!-- Jumbotron header -->
           <div class="jumbotron" style="text-align:center">
@@ -80,6 +86,20 @@
                               <input id="inputShowSolving" type="checkbox" onclick='setShowSolving(this);'/>
                           </td>
                       </tr>
+                      <tr class="row">
+                          <td class="col-sm-2">
+                              <p>Enabled solvers</p>
+                          </td>
+                          <td class="col-sm-7">
+                              <span>Enable or disable some solvers</span>
+                              <span><i class="reset-simulation-warning"><br/>*Modifying this setting resets the simulation</i></span>
+                          </td>
+                          <td class="col-sm-3">
+                              <label>BFS <input id="inputEnableBFSSolver" type="checkbox" onclick='setSolverEnabling("BFS", this);'/></label>
+                              <hr/>
+                              <label>DFS <input id="inputEnableDFSSolver" type="checkbox" onclick='setSolverEnabling("DFS", this);'/></label>
+                          </td>
+                      </tr>
                   </tbody>
               </table>
           </div>
@@ -93,7 +113,6 @@
               </div>
           </div>
       </div>
-
 
   </body>
 </html>
