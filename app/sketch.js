@@ -17,7 +17,7 @@ const showGrid = () => {
 }
 
 const W=900;
-let COL=10;
+let COL=25;
 let TOTAL_CELLS = COL*COL;
 const grid = [];
 let pause;
