@@ -4,20 +4,18 @@ function PathCell (prev, current) {
 }
 
 function SolverEuristic () {
-    this.current = grid[0][0];
-    this.visited = new Set();
-    this.stack = [new PathCell(undefined, this.current)];
-    this.currentPathCell;
-    this.solved = false;
-    this.finalPath = [];
-    this.isWorkDone = false;
-
-    this.colors = {
+    const myColors = {
         head:      [0, 255, 0],
         path:      [50, 200, 100],
         finalPath: [50, 200, 100],
         visited:   [50, 250, 100]
     }
+    Solver.call(this, myColors);
+
+    this.current = grid[0][0];
+    this.stack = [new PathCell(undefined, this.current)];
+    this.currentPathCell;
+    this.solved = false;
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
@@ -64,10 +62,4 @@ function SolverEuristic () {
         this.isWorkDone = this.solved;
         return this.isWorkDone;
     }
-
-    this.solveFull = () => {
-        while (!this.isWorkDone) {
-            this.iteration();
-        }
-    };
 }

@@ -3,26 +3,24 @@ function PathCell (prev, current) {
     this.current = current;
 }
 
-function SolverDFS () {
+function SolverBFS () {
+    const myColors = {
+        head:      [0, 0, 255],
+        path:      [50, 100, 200],
+        finalPath: [50, 100, 200],
+        visited:   [50, 100, 250]
+    }
+    Solver.call(this, myColors);
+
     this.current = grid[0][0];
-    this.visited = new Set();
     this.stack = [new PathCell(undefined, this.current)];
     this.currentPathCell;
     this.solved = false;
-    this.finalPath = [];
-    this.isWorkDone = false;
-
-    this.colors = {
-        head:      [255, 0, 0],
-        path:      [200, 100, 50],
-        finalPath: [200, 100, 50],
-        visited:   [250, 100, 50]
-    }
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
             this.current.isCurrent = false;
-            this.currentPathCell = this.stack.pop();
+            this.currentPathCell = this.stack.shift();
             this.current = this.currentPathCell.current;
 
             if (this.current.isFinish) {
@@ -63,10 +61,4 @@ function SolverDFS () {
         this.isWorkDone = this.solved;
         return this.isWorkDone;
     }
-
-    this.solveFull = () => {
-        while (!this.isWorkDone) {
-            this.iteration();
-        }
-    };
 }
