@@ -27,6 +27,7 @@ let nextTick;
 let showGeneration = false;
 let showSolving = true;
 let customFrameRate = 60;
+let showVisitedCells = false;
 
 let enabledSolvers = {
     'BFS': true,

@@ -7,6 +7,7 @@ function initializeInterface() {
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
     document.getElementById("inputEnableEuristicSolver").checked = enabledSolvers['Euristic'];
     document.getElementById("inputFrameRate").value = customFrameRate;
+    document.getElementById("inputShowVisitedCells").value = showVisitedCells;
 }
 
 function setSize() {
@@ -31,4 +32,9 @@ function setSolverEnabling(solverName, button) {
 function setAnimationFrameRate () {
     let newValue = document.getElementById("inputFrameRate").value;
     customFrameRate = Math.max(newValue, 1);
+}
+
+function setShowVisitedCells(button) {
+    showVisitedCells = button.checked;
+    resetMaze();
 }

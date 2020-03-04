@@ -11,7 +11,6 @@ function SolverEuristic () {
     this.solved = false;
     this.finalPath = [];
     this.isWorkDone = false;
-    this.showVisited = false;
 
     this.colors = {
         head:      [0, 255, 0],
@@ -46,7 +45,7 @@ function SolverEuristic () {
             // Add a color to mark the current cell
             this.current.currentColor = this.colors.head;
             // Keep a visual track of the visited cells if enabled
-            if (this.showVisited) {
+            if (showVisitedCells) {
                 this.current.permanentColors.push(this.colors.visited);
             }
         }

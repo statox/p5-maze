@@ -11,7 +11,6 @@ function SolverBFS () {
     this.solved = false;
     this.finalPath = [];
     this.isWorkDone = false;
-    this.showVisited = true;
 
     this.colors = {
         head:      [0, 0, 255],
@@ -45,7 +44,7 @@ function SolverBFS () {
             // Add a color to mark the current cell
             this.current.currentColor = this.colors.head;
             // Keep a visual track of the visited cells if enabled
-            if (this.showVisited) {
+            if (showVisitedCells) {
                 this.current.permanentColors.push(this.colors.visited);
             }
         }
