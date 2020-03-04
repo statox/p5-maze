@@ -5,6 +5,7 @@ function initializeInterface() {
     document.getElementById("inputShowSolving").checked = showSolving;
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
+    document.getElementById("inputEnableEuristicSolver").checked = enabledSolvers['Euristic'];
     document.getElementById("inputFrameRate").value = customFrameRate;
 }
 

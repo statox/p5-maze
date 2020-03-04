@@ -24,13 +24,14 @@ let pause;
 let generator;
 let solvers;
 let nextTick;
-let showGeneration = true;
+let showGeneration = false;
 let showSolving = true;
 let customFrameRate = 60;
 
 let enabledSolvers = {
     'BFS': true,
     'DFS': true,
+    'Euristic': true,
 }
 
 function resetMaze() {
@@ -46,6 +47,9 @@ function resetMaze() {
     }
     if (enabledSolvers['BFS']) {
         solvers.push(new SolverBFS());
+    }
+    if (enabledSolvers['Euristic']) {
+        solvers.push(new SolverEuristic());
     }
 
     pause = false;

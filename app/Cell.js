@@ -25,6 +25,10 @@ function Cell(i, j) {
     // String representation to use in a Set
     this.getRep = () => [this.i, this.j].join(',')
 
+    this.getDistanceToFinish = () => {
+        return COL**2 - (this.i + COL * this.j);
+    };
+
     this.show = () => {
         // mark the temporary colors
         while (this.tmpColors.length) {
