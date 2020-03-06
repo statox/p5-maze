@@ -10,7 +10,7 @@ function SolverEuristic () {
         finalPath: [50, 200, 100],
         visited:   [50, 250, 100]
     }
-    Solver.call(this, myColors);
+    Solver.call(this, 'Euristic', myColors);
 
     this.current = grid[0][0];
     this.stack = [new PathCell(undefined, this.current)];
@@ -19,6 +19,7 @@ function SolverEuristic () {
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
+            this.iterationCounter++;
             this.current.isCurrent = false;
             this.currentPathCell = this.stack.pop();
             this.current = this.currentPathCell.current;

@@ -10,7 +10,7 @@ function SolverBFS () {
         finalPath: [50, 100, 200],
         visited:   [50, 100, 250]
     }
-    Solver.call(this, myColors);
+    Solver.call(this, 'BFS', myColors);
 
     this.current = grid[0][0];
     this.stack = [new PathCell(undefined, this.current)];
@@ -19,6 +19,7 @@ function SolverBFS () {
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
+            this.iterationCounter++;
             this.current.isCurrent = false;
             this.currentPathCell = this.stack.shift();
             this.current = this.currentPathCell.current;

@@ -38,3 +38,26 @@ function setShowVisitedCells(button) {
     showVisitedCells = button.checked;
     resetMaze();
 }
+
+function updateStats (stats) {
+    const statsTable = document.getElementById("stats-table");
+    while (statsTable.lastElementChild) {
+        statsTable.removeChild(statsTable.lastElementChild);
+    }
+
+    stats.sort((s1, s2) => s1.name - s2.name).forEach(s => {
+        var row = document.createElement('tr');
+        row.className += ' row';
+
+        var nameCol = document.createElement('td');
+        nameCol.className += ' col-sm-6';
+        nameCol.appendChild(document.createTextNode(s.name));
+        var iterationsCol = document.createElement('td');
+        iterationsCol.className += ' col-sm-6';
+        iterationsCol.appendChild(document.createTextNode(s.iterations));
+
+        row.appendChild(nameCol);
+        row.appendChild(iterationsCol);
+        statsTable.appendChild(row);
+    });
+}

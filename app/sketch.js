@@ -28,6 +28,7 @@ let showGeneration = false;
 let showSolving = true;
 let customFrameRate = 60;
 let showVisitedCells = false;
+let solversStats;
 
 let enabledSolvers = {
     'BFS': true,
@@ -92,6 +93,10 @@ function draw() {
                 solver.solveFull();
             }
         });
+
+        // Get the stats and put them in the view
+        solversStats = solvers.map(s => s.getStats());
+        updateStats(solversStats)
     }
     // When the solving is done create a pause to show the result
     // for a few frames

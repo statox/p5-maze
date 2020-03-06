@@ -10,7 +10,7 @@ function SolverDFS () {
         finalPath: [200, 100, 50],
         visited:   [250, 100, 50]
     }
-    Solver.call(this, myColors);
+    Solver.call(this, 'DFS', myColors);
 
     this.current = grid[0][0];
     this.stack = [new PathCell(undefined, this.current)];
@@ -19,6 +19,7 @@ function SolverDFS () {
 
     this.iteration = () => {
         if (!this.solved && this.stack.length) {
+            this.iterationCounter++;
             this.current.isCurrent = false;
             this.currentPathCell = this.stack.pop();
             this.current = this.currentPathCell.current;
