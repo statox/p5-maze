@@ -103,12 +103,12 @@ function draw() {
     const allSolversDone = solvers.filter(s => s.isWorkDone === false).length === 0;
     if (generator.isWorkDone && allSolversDone && !pause) {
         pause = true;
-        nextTick = frameCount + 120;
+        nextTick = millis() + (5 * 1000);
 
         solvers.forEach(s => s.iteration());
     }
     // When we paused long enough reset the maze and the solver
-    if (pause && frameCount > nextTick) {
+    if (pause && millis() > nextTick) {
         pause = false;
 
         resetMaze();
