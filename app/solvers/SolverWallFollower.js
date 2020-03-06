@@ -5,10 +5,10 @@ function PathCell (prev, current) {
 
 function SolverWallFollower () {
     const myColors = {
-        head:      [77, 71, 27],
-        path:      [255, 238, 89],
-        finalPath: [255, 238, 89],
-        visited:   [255, 238, 89]
+        head:      [56, 45, 74],
+        path:      [119, 95, 156],
+        finalPath: [119, 95, 156],
+        visited:   [119, 95, 156]
     }
     Solver.call(this, 'Wall follower', myColors);
 
