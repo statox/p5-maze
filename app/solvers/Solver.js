@@ -22,5 +22,5 @@ function Solver (name, colors) {
             iterations: this.iterationCounter,
             color: this.colors.head
         }
-    }
+    };
 }

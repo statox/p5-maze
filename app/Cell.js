@@ -133,4 +133,25 @@ function Cell(i, j) {
 
         return neighbors;
     }
+
+    // Return the cell on the required direction or undefined
+    this.getWay = (way) => {
+        // top
+        if (way === 'N' && this.j>0 && !this.walls[0]) {
+            return grid[this.j-1][this.i];
+        }
+        // right
+        if (way === 'E' && this.i<COL-1 && !this.walls[1]) {
+            return grid[this.j][this.i+1];
+        }
+        // bottom
+        if (way === 'S' && this.j<COL-1 && !this.walls[2]) {
+            return grid[this.j+1][this.i];
+        }
+        // left
+        if (way === 'W' && this.i>0 && !this.walls[3]) {
+            return grid[this.j][this.i-1];
+        }
+        return;
+    }
 }

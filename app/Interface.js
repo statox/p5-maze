@@ -6,6 +6,7 @@ function initializeInterface() {
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
     document.getElementById("inputEnableEuristicSolver").checked = enabledSolvers['Euristic'];
+    document.getElementById("inputEnableWallFollowerSolver").checked = enabledSolvers['WallFollower'];
     document.getElementById("inputFrameRate").value = customFrameRate;
     document.getElementById("inputShowVisitedCells").value = showVisitedCells;
 }

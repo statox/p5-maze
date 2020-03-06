@@ -34,6 +34,7 @@ let enabledSolvers = {
     'BFS': true,
     'DFS': true,
     'Euristic': true,
+    'WallFollower': true
 }
 
 function resetMaze() {
@@ -52,6 +53,9 @@ function resetMaze() {
     }
     if (enabledSolvers['Euristic']) {
         solvers.push(new SolverEuristic());
+    }
+    if (enabledSolvers['WallFollower']) {
+        solvers.push(new SolverWallFollower());
     }
 
     pause = false;
