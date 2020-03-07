@@ -47,6 +47,10 @@ function SolverBFS () {
                 this.current.permanentColors.push(this.colors.visited);
             }
         }
+        if (!this.solved && !this.stack.length) {
+            this.isStuckInLoop=true;
+            console.log(this.name, 'stuck in loop', this.iterationCounter);
+        }
 
         // Mark the cells in path
         while (this.currentPathCell.prev !== undefined) {
@@ -58,8 +62,7 @@ function SolverBFS () {
             this.currentPathCell = this.currentPathCell.prev;
         }
 
-
-        this.isWorkDone = this.solved;
+        this.isWorkDone = this.solved || this.isStuckInLoop;
         return this.isWorkDone;
     }
 }

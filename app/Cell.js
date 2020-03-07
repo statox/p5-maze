@@ -2,13 +2,13 @@ function Cell(i, j) {
     this.i=i;
     this.j=j;
     this.visited = false;
-    this.isCurrent = false;
     this.isStart = false;
     this.isFinish = false;
     this.walls = [true, true, true, true];
     this.tmpColors = [];
     this.permanentColors = [];
     this.currentColor;
+    this.isAlive = false;
 
     // Initialisations to do to mark the cell as the start of the maze
     this.makeStart = () => {
@@ -25,6 +25,7 @@ function Cell(i, j) {
     // String representation to use in a Set
     this.getRep = () => [this.i, this.j].join(',')
 
+    // Distance to the end of the maze used for euristics
     this.getDistanceToFinish = () => {
         return COL**2 - (this.i + COL * this.j);
     };
@@ -53,6 +54,13 @@ function Cell(i, j) {
             noStroke();
             rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
             this.currentColor = undefined;
+        }
+
+        // mark the cells with four walls as full
+        if (this.walls.filter(w => w === false).length === 0) {
+            fill(255, 255, 255);
+            noStroke();
+            rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
         }
 
         // mark the start
@@ -109,6 +117,37 @@ function Cell(i, j) {
         }
 
         return neighbors;
+    }
+
+    // Return the number of alive neighbors from 0 to 8
+    this.getAliveNeighbors = () => {
+        const aliveNeighbors = [];
+        if (this.j>0) {
+            if (this.i>0) {
+                aliveNeighbors.push(grid[this.j-1][this.i-1].isAlive);
+            }
+            aliveNeighbors.push(grid[this.j-1][this.i].isAlive);
+            if (this.i<COL-1) {
+                aliveNeighbors.push(grid[this.j-1][this.i+1].isAlive);
+            }
+        }
+        if (this.i>0) {
+            aliveNeighbors.push(grid[this.j][this.i-1].isAlive);
+        }
+        if (this.i<COL-1) {
+            aliveNeighbors.push(grid[this.j][this.i+1].isAlive);
+        }
+        if (this.j<COL-1) {
+            if (this.i>0) {
+                aliveNeighbors.push(grid[this.j+1][this.i-1].isAlive);
+            }
+            aliveNeighbors.push(grid[this.j+1][this.i].isAlive);
+            if (this.i<COL-1) {
+                aliveNeighbors.push(grid[this.j+1][this.i+1].isAlive);
+            }
+        }
+
+        return aliveNeighbors.filter(a => a === true).length;
     }
 
     // Return the list of neighbor cells with an open wall

@@ -2,6 +2,7 @@ function Solver (name, colors) {
     this.name = name;
     this.visited = new Set();
     this.isWorkDone = false;
+    this.isStuckInLoop = false;
     this.finalPath = [];
     this.colors = colors;
     this.iterationCounter = 0;

@@ -19,7 +19,7 @@ const showGrid = () => {
 const W=900;
 let COL=25;
 let TOTAL_CELLS = COL*COL;
-const grid = [];
+let grid = [];
 let pause;
 let generator;
 let solvers;
@@ -37,11 +37,18 @@ let enabledSolvers = {
     'WallFollower': true
 }
 
+let counterToRemove = 0;
 function resetMaze() {
     TOTAL_CELLS = COL*COL;
 
     newGrid();
-    generator = new Generator();
+
+    counterToRemove++;
+    if (counterToRemove % 2 === 0) {
+        generator = new Generator1();
+    } else {
+        generator = new Generator2();
+    }
 
     solvers = [];
 

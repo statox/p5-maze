@@ -1,4 +1,4 @@
-function Generator() {
+function Generator1() {
     this.current = grid[0][0];
     this.stack = [];
     this.isWorkDone = false;

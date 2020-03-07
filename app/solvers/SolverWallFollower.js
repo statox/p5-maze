@@ -25,6 +25,10 @@ function SolverWallFollower () {
     this.direction = 'S';
 
     this.iteration = () => {
+        if (this.iterationCounter>=COL*COL + 1) {
+            this.isStuckInLoop=true;
+            console.log(this.name, 'stuck in loop', this.iterationCounter);
+        }
         if (!this.solved && this.stack.length) {
             this.iterationCounter++;
             this.current.isCurrent = false;
@@ -69,7 +73,7 @@ function SolverWallFollower () {
         }
 
 
-        this.isWorkDone = this.solved;
+        this.isWorkDone = this.solved || this.isStuckInLoop;
         return this.isWorkDone;
     }
 }
