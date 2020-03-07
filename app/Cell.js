@@ -57,7 +57,7 @@ function Cell(i, j) {
         }
 
         // mark the cells with four walls as full
-        if (this.walls.filter(w => w === false).length === 0) {
+        if (this.isAlive && this.walls.filter(w => w === false).length === 0) {
             fill(255, 255, 255);
             noStroke();
             rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));

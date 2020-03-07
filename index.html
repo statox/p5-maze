@@ -27,8 +27,8 @@
     <!-- App -->
     <script src="app/sketch.js"></script>
     <script src="app/Cell.js"></script>
-    <script src="app/Generator1.js"></script>
-    <script src="app/Generator2.js"></script>
+    <script src="app/generators/GeneratorCellularAutomata.js"></script>
+    <script src="app/generators/GeneratorRecuriveBacktracker.js"></script>
     <script src="app/solvers/Solver.js"></script>
     <script src="app/solvers/SolverDFS.js"></script>
     <script src="app/solvers/SolverBFS.js"></script>
@@ -112,6 +112,19 @@
                           </td>
                           <td class="col-sm-3">
                               <input id="inputShowVisitedCells" type="checkbox" onclick='setShowVisitedCells(this);'/>
+                          </td>
+                      </tr>
+                      <tr class="row">
+                          <td class="col-sm-2">
+                              <p>Enabled generators</p>
+                          </td>
+                          <td class="col-sm-7">
+                              <span>Enable or disable some maze generators</span>
+                          </td>
+                          <td class="col-sm-3">
+                              <label>Recursive backtracker <input id="inputEnableRecursiveBacktrackerGenerator" type="checkbox" onclick='setGeneratorEnabling("RecursiveBacktracker", this);'/></label>
+                              <hr/>
+                              <label>Cellular automate <input id="inputEnableCellularAutomataGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomata", this);'/></label>
                           </td>
                       </tr>
                       <tr class="row">

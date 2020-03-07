@@ -43,7 +43,7 @@ const makeCellDead = (i, j) => {
 };
 
 
-function Generator2() {
+function GeneratorCellularAutomata() {
     this.current = grid[0][0];
     this.stack = [];
     this.isWorkDone = false;

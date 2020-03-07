@@ -1,4 +1,4 @@
-function Generator1() {
+function GeneratorRecuriveBacktracker() {
     this.current = grid[0][0];
     this.stack = [];
     this.isWorkDone = false;

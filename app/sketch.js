@@ -37,17 +37,30 @@ let enabledSolvers = {
     'WallFollower': true
 }
 
-let counterToRemove = 0;
+let enabledGenerators = {
+    'RecursiveBacktracker': true,
+    'CellularAutomata': true
+}
+
+let generatorCounter = 0;
 function resetMaze() {
     TOTAL_CELLS = COL*COL;
 
     newGrid();
 
-    counterToRemove++;
-    if (counterToRemove % 2 === 0) {
-        generator = new Generator1();
-    } else {
-        generator = new Generator2();
+    const generators = Object.keys(enabledGenerators).filter(k => enabledGenerators[k]);
+    generatorCounter = (generatorCounter + 1) % generators.length;
+    console.log(enabledGenerators, generators, generatorCounter, generators[generatorCounter]);
+    switch (generators[generatorCounter]) {
+        case 'RecursiveBacktracker':
+            generator = new GeneratorRecuriveBacktracker();
+            break;
+        case 'CellularAutomata':
+            generator = new GeneratorCellularAutomata();
+            break;
+        default:
+            generator = new GeneratorRecuriveBacktracker();
+            break;
     }
 
     solvers = [];

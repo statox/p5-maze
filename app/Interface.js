@@ -1,12 +1,18 @@
 function initializeInterface() {
     // Set the values of the different inputs on the page based on the default values
     document.getElementById("inputSize").value = COL;
+
     document.getElementById("inputShowGeneration").checked = showGeneration;
     document.getElementById("inputShowSolving").checked = showSolving;
+
+    document.getElementById("inputEnableRecursiveBacktrackerGenerator").checked = enabledGenerators['RecursiveBacktracker'];
+    document.getElementById("inputEnableCellularAutomataGenerator").checked = enabledGenerators['CellularAutomata'];
+
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
     document.getElementById("inputEnableEuristicSolver").checked = enabledSolvers['Euristic'];
     document.getElementById("inputEnableWallFollowerSolver").checked = enabledSolvers['WallFollower'];
+
     document.getElementById("inputFrameRate").value = customFrameRate;
     document.getElementById("inputShowVisitedCells").value = showVisitedCells;
 }
@@ -28,6 +34,14 @@ function setShowSolving(button) {
 function setSolverEnabling(solverName, button) {
     enabledSolvers[solverName] = button.checked;
     resetMaze();
+}
+
+function setGeneratorEnabling(generatorName, button) {
+    enabledGenerators[generatorName] = button.checked;
+    if (Object.values(enabledGenerators).filter(e => e===true).length === 0) {
+        enabledGenerators['RecursiveBacktracker'] = true;
+        document.getElementById("inputEnableRecursiveBacktrackerGenerator").checked = true;
+    }
 }
 
 function setAnimationFrameRate () {
