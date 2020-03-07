@@ -41,10 +41,8 @@ function SolverWallFollower () {
                 while (!choosenCell) {
                     newDirection = this.directions[this.direction][newDirectionIndex]
                     choosenCell = this.current.getWay(newDirection)
-                    console.log('test', {newDirection, choosenCell});
                     newDirectionIndex++;
                 }
-                console.log('chosen', {newDirection, choosenCell});
                 this.direction = newDirection;
                 this.stack.push(new PathCell(this.currentPathCell, choosenCell));
             }
