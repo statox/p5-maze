@@ -81,3 +81,11 @@ function updateStats (stats) {
 function updateView(generator) {
     document.getElementById("currentGeneratorName").textContent = generator.name;
 }
+
+function updateCanvasSize() {
+    // Try to have a canvas always fitting the window size
+    const windowH = windowHeight * 0.8;
+    const divW = select('#maze-content').width * 0.9;
+    W = Math.min(windowH, divW) || W;
+    resizeCanvas(W, W);
+}

@@ -16,7 +16,7 @@ const showGrid = () => {
     grid.flat().forEach(cell => cell.show());
 }
 
-const W=900;
+let W=900;
 let COL=25;
 let TOTAL_CELLS = COL*COL;
 let grid = [];
@@ -92,6 +92,7 @@ function setup() {
 
     initializeInterface();
     resetMaze();
+    updateCanvasSize();
 }
 
 function draw() {
@@ -141,4 +142,8 @@ function draw() {
 
         resetMaze();
     }
+}
+
+function windowResized() {
+    updateCanvasSize();
 }
