@@ -166,7 +166,7 @@ function Cell(i, j) {
         return neighbors;
     }
 
-    // Return the cell on the required direction or undefined
+    // Return the cell on the required direction if the wall is open or undefined
     this.getWay = (way) => {
         // top
         if (way === 'N' && this.j>0 && !this.walls[0]) {
@@ -185,5 +185,50 @@ function Cell(i, j) {
             return grid[this.j][this.i-1];
         }
         return;
+    }
+
+    // Return the cell on the required direction or undefined
+    this.getNeighborInDirection = (way) => {
+        // top
+        if (way === 'N' && this.j>0) {
+            return grid[this.j-1][this.i];
+        }
+        // right
+        if (way === 'E' && this.i<COL-1) {
+            return grid[this.j][this.i+1];
+        }
+        // bottom
+        if (way === 'S' && this.j<COL-1) {
+            return grid[this.j+1][this.i];
+        }
+        // left
+        if (way === 'W' && this.i>0) {
+            return grid[this.j][this.i-1];
+        }
+        return;
+    }
+
+    // Remove the wall with a neighbor
+    this.makeWay = (way) => {
+        // top
+        if (way === 'N' && this.j>0) {
+            grid[this.j][this.i].walls[0] = false;
+            grid[this.j-1][this.i].walls[2] = false;
+        }
+        // right
+        if (way === 'E' && this.i<COL-1) {
+            grid[this.j][this.i].walls[1] = false;
+            grid[this.j][this.i+1].walls[3] = false;
+        }
+        // bottom
+        if (way === 'S' && this.j<COL-1) {
+            grid[this.j][this.i].walls[2] = false;
+            grid[this.j+1][this.i].walls[0] = false;
+        }
+        // left
+        if (way === 'W' && this.i>0) {
+            grid[this.j][this.i].walls[3] = false;
+            grid[this.j][this.i-1].walls[1] = false;
+        }
     }
 }

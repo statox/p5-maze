@@ -8,6 +8,7 @@ function initializeInterface() {
     document.getElementById("inputEnableRecursiveBacktrackerGenerator").checked = enabledGenerators['RecursiveBacktracker'];
     document.getElementById("inputEnableCellularAutomataMazeGenerator").checked = enabledGenerators['CellularAutomataMaze'];
     document.getElementById("inputEnableCellularAutomataMazectricGenerator").checked = enabledGenerators['CellularAutomataMazectric'];
+    document.getElementById("inputEnableRecursiveDivisorGenerator").checked = enabledGenerators['RecursiveDivisor'];
 
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];

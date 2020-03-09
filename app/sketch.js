@@ -41,6 +41,7 @@ let enabledGenerators = {
     'RecursiveBacktracker': true,
     'CellularAutomataMaze': true,
     'CellularAutomataMazectric': true,
+    'RecursiveDivisor': true
 }
 
 let generatorCounter = 0;
@@ -60,6 +61,9 @@ function resetMaze() {
             break;
         case 'CellularAutomataMaze':
             generator = new GeneratorCellularAutomata([3], [1,2,3,4,5], 'Maze');
+            break;
+        case 'RecursiveDivisor':
+            generator = new GeneratorRecursiveDivisor();
             break;
         default:
             generator = new GeneratorRecuriveBacktracker();

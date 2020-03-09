@@ -28,7 +28,7 @@
     <script src="app/sketch.js"></script>
     <script src="app/Cell.js"></script>
     <script src="app/generators/GeneratorCellularAutomata.js"></script>
-    <script src="app/generators/GeneratorRecuriveBacktracker.js"></script>
+    <script src="app/generators/GeneratorRecursiveDivisor.js"></script>
     <script src="app/solvers/Solver.js"></script>
     <script src="app/solvers/SolverDFS.js"></script>
     <script src="app/solvers/SolverBFS.js"></script>
@@ -127,6 +127,8 @@
                               <label>Cellular automata: Maze B3/S12345<input id="inputEnableCellularAutomataMazeGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomataMaze", this);'/></label>
                               <hr/>
                               <label>Cellular automata: Mazectric B3/S1234<input id="inputEnableCellularAutomataMazectricGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomataMazectric", this);'/></label>
+                              <hr/>
+                              <label>Recursive divisor <input id="inputEnableRecursiveDivisorGenerator" type="checkbox" onclick='setGeneratorEnabling("RecursiveDivisor", this);'/></label>
                           </td>
                       </tr>
                       <tr class="row">
