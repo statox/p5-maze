@@ -42,8 +42,15 @@ const makeCellDead = (i, j) => {
     }
 };
 
-
-function GeneratorCellularAutomata() {
+/*
+ * The B and S parameters represent the rules of the generator
+ * B: int[] - number of alive neighbors required to make a dead cell alive
+ * S: int[] - number of alive neighbors required to keep a cell alive
+ */
+function GeneratorCellularAutomata(B, S, name) {
+    this.B = B;
+    this.S = S;
+    this.name = `Cellular automata - ${name || 'unamed'} - B${this.B.join('')}/S${this.S.join('')}`;
     this.current = grid[0][0];
     this.stack = [];
     this.isWorkDone = false;
@@ -101,11 +108,11 @@ function GeneratorCellularAutomata() {
                     const count  = neighborCounts[key];
 
                     if (grid[j][i].isAlive) {
-                        if (count < 1 || count > 4) {
+                        if (!this.S.includes(count)) {
                             makeCellDead(i, j);
                         }
                     } else {
-                        if (count === 3) {
+                        if (this.B.includes(count)) {
                             makeCellAlive(i, j);
                         }
                     }

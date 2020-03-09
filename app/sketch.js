@@ -39,7 +39,8 @@ let enabledSolvers = {
 
 let enabledGenerators = {
     'RecursiveBacktracker': true,
-    'CellularAutomata': true
+    'CellularAutomataMaze': true,
+    'CellularAutomataMazectric': true,
 }
 
 let generatorCounter = 0;
@@ -50,18 +51,21 @@ function resetMaze() {
 
     const generators = Object.keys(enabledGenerators).filter(k => enabledGenerators[k]);
     generatorCounter = (generatorCounter + 1) % generators.length;
-    console.log(enabledGenerators, generators, generatorCounter, generators[generatorCounter]);
     switch (generators[generatorCounter]) {
         case 'RecursiveBacktracker':
             generator = new GeneratorRecuriveBacktracker();
             break;
-        case 'CellularAutomata':
-            generator = new GeneratorCellularAutomata();
+        case 'CellularAutomataMazectric':
+            generator = new GeneratorCellularAutomata([3], [1,2,3,4], 'Mazectric');
+            break;
+        case 'CellularAutomataMaze':
+            generator = new GeneratorCellularAutomata([3], [1,2,3,4,5], 'Maze');
             break;
         default:
             generator = new GeneratorRecuriveBacktracker();
             break;
     }
+    updateView(generator)
 
     solvers = [];
 

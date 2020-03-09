@@ -124,7 +124,9 @@
                           <td class="col-sm-3">
                               <label>Recursive backtracker <input id="inputEnableRecursiveBacktrackerGenerator" type="checkbox" onclick='setGeneratorEnabling("RecursiveBacktracker", this);'/></label>
                               <hr/>
-                              <label>Cellular automate <input id="inputEnableCellularAutomataGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomata", this);'/></label>
+                              <label>Cellular automata: Maze B3/S12345<input id="inputEnableCellularAutomataMazeGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomataMaze", this);'/></label>
+                              <hr/>
+                              <label>Cellular automata: Mazectric B3/S1234<input id="inputEnableCellularAutomataMazectricGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomataMazectric", this);'/></label>
                           </td>
                       </tr>
                       <tr class="row">
@@ -153,6 +155,8 @@
           <div class="row">
               <h1 id="simulation">Maze</h1>
               <hr/>
+              <div>Generator: <span id="currentGeneratorName"></span></div>
+              <hr/>
               <div id="maze-content" class="collapse in">
                   <div class="col-md-6" id="canvasDiv"></div>
               </div>
@@ -160,7 +164,7 @@
 
           <!-- The stats -->
           <div class="row">
-              <h1 id="Stats">Maze</h1>
+              <h1 id="Stats">Stats</h1>
               <hr/>
               <div class="collapse in" id="stats-content">
                   <table class="table table-bordered collapse in">

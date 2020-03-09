@@ -6,7 +6,8 @@ function initializeInterface() {
     document.getElementById("inputShowSolving").checked = showSolving;
 
     document.getElementById("inputEnableRecursiveBacktrackerGenerator").checked = enabledGenerators['RecursiveBacktracker'];
-    document.getElementById("inputEnableCellularAutomataGenerator").checked = enabledGenerators['CellularAutomata'];
+    document.getElementById("inputEnableCellularAutomataMazeGenerator").checked = enabledGenerators['CellularAutomataMaze'];
+    document.getElementById("inputEnableCellularAutomataMazectricGenerator").checked = enabledGenerators['CellularAutomataMazectric'];
 
     document.getElementById("inputEnableBFSSolver").checked = enabledSolvers['BFS'];
     document.getElementById("inputEnableDFSSolver").checked = enabledSolvers['DFS'];
@@ -75,4 +76,8 @@ function updateStats (stats) {
         row.appendChild(iterationsCol);
         statsTable.appendChild(row);
     });
+}
+
+function updateView(generator) {
+    document.getElementById("currentGeneratorName").textContent = generator.name;
 }

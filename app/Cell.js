@@ -56,13 +56,6 @@ function Cell(i, j) {
             this.currentColor = undefined;
         }
 
-        // mark the cells with four walls as full
-        if (this.isAlive && this.walls.filter(w => w === false).length === 0) {
-            fill(255, 255, 255);
-            noStroke();
-            rect(toXY(this.i), toXY(this.j), toXY(1), toXY(1));
-        }
-
         // mark the start
         if (this.isStart) {
             fill(50, 150, 50);
