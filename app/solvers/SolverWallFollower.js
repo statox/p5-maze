@@ -23,18 +23,20 @@ function SolverWallFollower () {
         N: ['E', 'N', 'W', 'S']
     };
     this.direction = 'S';
+    this.startingCellRep = this.current.getRep();
 
     this.iteration = () => {
-        if (this.iterationCounter>=COL*COL + 1) {
-            this.isStuckInLoop=true;
-            console.log(this.name, 'stuck in loop', this.iterationCounter);
-        }
         if (!this.solved && this.stack.length) {
             this.iterationCounter++;
             this.current.isCurrent = false;
 
             this.currentPathCell = this.stack.pop();
             this.current = this.currentPathCell.current;
+
+            if (this.current.getRep() === this.startingCellRep && this.iterationCounter > 1) {
+                this.isStuckInLoop=true;
+                console.log(this.name, 'stuck in loop', this.iterationCounter);
+            }
 
             if (this.current.isFinish) {
                 this.solved = true;
