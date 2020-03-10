@@ -29,6 +29,7 @@
     <script src="app/Cell.js"></script>
     <script src="app/generators/GeneratorCellularAutomata.js"></script>
     <script src="app/generators/GeneratorRecursiveDivisor.js"></script>
+    <script src="app/generators/GeneratorBacktracker.js"></script>
     <script src="app/solvers/Solver.js"></script>
     <script src="app/solvers/SolverDFS.js"></script>
     <script src="app/solvers/SolverBFS.js"></script>
@@ -122,7 +123,7 @@
                               <span>Enable or disable some maze generators</span>
                           </td>
                           <td class="col-sm-3">
-                              <label>Recursive backtracker <input id="inputEnableRecursiveBacktrackerGenerator" type="checkbox" onclick='setGeneratorEnabling("RecursiveBacktracker", this);'/></label>
+                              <label>Backtracker <input id="inputEnableRecursiveBacktrackerGenerator" type="checkbox" onclick='setGeneratorEnabling("RecursiveBacktracker", this);'/></label>
                               <hr/>
                               <label>Cellular automata: Maze B3/S12345<input id="inputEnableCellularAutomataMazeGenerator" type="checkbox" onclick='setGeneratorEnabling("CellularAutomataMaze", this);'/></label>
                               <hr/>

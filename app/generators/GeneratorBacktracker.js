@@ -1,5 +1,5 @@
 function GeneratorRecuriveBacktracker() {
-    this.name = 'Recursive backtracker';
+    this.name = 'Backtracker';
     this.current = grid[0][0];
     this.stack = [];
     this.isWorkDone = false;
